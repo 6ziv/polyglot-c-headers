@@ -1,0 +1,43 @@
+name: run-tests
+on: [push]
+jobs: 
+  test:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            compiler: clang-cl
+          - os: windows-latest
+            compiler: i686-w64-mingw32-g++
+          - os: Ubuntu-latest
+            compiler: gcc
+          - os: Ubuntu-latest
+            compiler: clang
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: pwsh
+    steps: 
+      - uses: actions/checkout@v4
+        with: 
+          path: project
+      - uses: actions/setup-python@v4
+      - uses: FedericoCarboni/setup-ffmpeg@v2
+      - uses: jwlawson/actions-setup-cmake@v1.14
+      - uses: TheMrMilchmann/setup-msvc-dev@v3
+        if: ${{ matrix.compiler == 'clang-cl' }}
+      - uses: egor-tensin/setup-mingw@v2
+        with:
+          platform: x64
+        if: ${{ matrix.compiler == 'i686-w64-mingw32-g++' }}
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      - run: mkdir ${GITHUB_WORKSPACE}/build
+      - run: cmake ${GITHUB_WORKSPACE}/project -GNinja
+        working-directory: ./build
+        env:
+          CC: ${{ matrix.compiler }}
+          CXX: ${{ matrix.compiler }}
+      - run: cmake --build .
+        working-directory: ./build
+      - run: ctest
+        working-directory: ./build

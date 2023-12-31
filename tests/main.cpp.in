@@ -1,0 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "@header@"
+int main(){
+	printf("Hello world from main.\n");
+}
