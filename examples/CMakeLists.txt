@@ -9,7 +9,7 @@ add_custom_command(
 )
 add_custom_command(
 	OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/play_mp4/badapple.mp4"
-	COMMAND "${PYTHON_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/build_mp4.py" "${CMAKE_CURRENT_SOURCE_DIR}/../resources/badapple.mp4" "${CMAKE_CURRENT_BINARY_DIR}/play_mp4/badapple.mp4" -p -b
+	COMMAND "${PYTHON_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/build_mp4.py" "${CMAKE_CURRENT_SOURCE_DIR}/../resources/badapple.mp4" "${CMAKE_CURRENT_BINARY_DIR}/play_mp4/badapple.mp4" -b
 	DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/build_mp4.py" "${CMAKE_CURRENT_SOURCE_DIR}/../resources/badapple.mp4" "${CMAKE_CURRENT_BINARY_DIR}/play_mp4/main.cpp"
 )
 add_custom_target(example_mp4 DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/play_mp4/main.cpp" "${CMAKE_CURRENT_BINARY_DIR}/play_mp4/badapple.mp4")
@@ -35,7 +35,7 @@ add_custom_command(
 )
 add_custom_command(
 	OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/run_windows_executable/ymzx.exe"
-	COMMAND "${PYTHON_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/build_exe.py" "${CMAKE_CURRENT_SOURCE_DIR}/../resources/ymzx.exe" "${CMAKE_CURRENT_BINARY_DIR}/run_windows_executable/ymzx_raw.exe" -p -b -e
+	COMMAND "${PYTHON_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/build_exe.py" "${CMAKE_CURRENT_SOURCE_DIR}/../resources/ymzx.exe" "${CMAKE_CURRENT_BINARY_DIR}/run_windows_executable/ymzx_raw.exe" -b -e
 	COMMAND "${PYTHON_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/concat_files.py" "${CMAKE_CURRENT_BINARY_DIR}/run_windows_executable/ymzx.exe" "${CMAKE_CURRENT_BINARY_DIR}/run_windows_executable/ymzx_raw.exe" "${CMAKE_CURRENT_SOURCE_DIR}/../resources/ymzx_tail.patch"
 	DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/build_exe.py" "${CMAKE_CURRENT_SOURCE_DIR}/../resources/ymzx.exe" "${CMAKE_CURRENT_BINARY_DIR}/run_windows_executable/main.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/../resources/ymzx_tail.patch" "${CMAKE_CURRENT_SOURCE_DIR}/concat_files.py"
 )

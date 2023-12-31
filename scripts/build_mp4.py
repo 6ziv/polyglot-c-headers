@@ -375,12 +375,12 @@ if __name__ == '__main__':
     )
     parser.add_argument('video_file')
     parser.add_argument('output_file')
-    parser.add_argument('-p','--use-pragma', action='store_true', help='Wrap the raw string a weird double-pragma syntex to speed up compiling. Not so standard, but works on gcc and clang.')
+    #parser.add_argument('-p','--use-pragma', action='store_true', help='Wrap the raw string a weird double-pragma syntex to speed up compiling. Not so standard, but works on gcc and clang.')
     
     parser.add_argument('-b','--use-base64', action='store_true', help='store the original data as base64 instead of byte array. Decode a little slower, binary size may grow a little, but generate smaller header.')
     args = parser.parse_args()
     
-    WRAP_WITH_PRAGMA = args.use_pragma
+    #WRAP_WITH_PRAGMA = args.use_pragma
     USE_BASE64 = args.use_base64
     
     build_mp4(args.video_file, args.output_file)

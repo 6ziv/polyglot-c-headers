@@ -8,7 +8,7 @@ jobs:
           - os: windows-latest
             compiler: clang-cl
           - os: windows-latest
-            compiler: i686-w64-mingw32-g++
+            compiler: x86_64-w64-mingw32-gcc
           - os: Ubuntu-latest
             compiler: gcc
           - os: Ubuntu-latest
@@ -31,7 +31,8 @@ jobs:
       - uses: egor-tensin/setup-mingw@v2
         with:
           platform: x64
-        if: ${{ matrix.compiler == 'i686-w64-mingw32-g++' }}
+          static: 0
+        if: ${{ matrix.compiler == 'x86_64-w64-mingw32-gcc' }}
       - uses: seanmiddleditch/gha-setup-ninja@master
       - run: mkdir build
         working-directory: ./

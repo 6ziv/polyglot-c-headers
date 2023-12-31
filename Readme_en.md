@@ -32,15 +32,7 @@ void f(){(void)R"d_sequence(
 )d_sequence";}
 ```
 
-I personally suggest another pattern below:
 
-```
-_Pragma(R"d_seq_1(comment(user,R"d_seq2(
-    binary data here!
-)seq2"))d_seq1")
-```
-
-This is not so standard-compliant as the previous one, but it works on gcc and clang, and compiles faster.
 
 Besides, frequently-used c++ compilers ignore null characters in source files.
 

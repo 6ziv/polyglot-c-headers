@@ -6,7 +6,7 @@ import mmap
 import base64
 import argparse
 
-WRAP_WITH_PRAGMA = True
+WRAP_WITH_PRAGMA = False
 
 USE_BASE64 = False
 ALIGN_PE_HEADER = 0x10
@@ -403,13 +403,13 @@ if __name__=='__main__':
     )
     parser.add_argument('input_file')
     parser.add_argument('output_file')
-    parser.add_argument('-p','--use-pragma', action='store_true', help='Wrap the raw string a weird double-pragma syntex to speed up compiling. Not so standard, but works on gcc and clang.')
+    #parser.add_argument('-p','--use-pragma', action='store_true', help='Wrap the raw string a weird double-pragma syntex to speed up compiling. Not so standard, but works on gcc and clang.')
     parser.add_argument('-b','--use-base64', action='store_true', help='store the original data as base64 instead of byte array. Decode a little slower, binary size may grow a little, but generate smaller header.')
     parser.add_argument('-e','--elevate', action='store_true', help='Try to elevate when given executable requires administrator privileges.')
     
     args = parser.parse_args()
     
-    WRAP_WITH_PRAGMA = args.use_pragma
+    #WRAP_WITH_PRAGMA = args.use_pragma
     USE_BASE64 = args.use_base64
     AUTO_TRY_ELEVATE = args.elevate
     

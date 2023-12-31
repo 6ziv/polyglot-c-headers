@@ -1,5 +1,5 @@
-project(polyglot_headers)
 cmake_minimum_required(VERSION 3.19 FATAL_ERROR)
+project(polyglot_headers)
 enable_testing()
 
 add_subdirectory("resources")

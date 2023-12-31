@@ -38,15 +38,7 @@ void f(){(void)R"d_sequence(
 )d_sequence";}
 ```
 
-不过我个人更推荐下面这种不怎么标准的写法：
 
-```
-_Pragma(R"d_seq_1(comment(user,R"d_seq2(
-    binary data here!
-)seq2"))d_seq1")
-```
-
-啊，至少它在gcc和clang下都能通过编译，而且编译器来好像比前面那个快。
 
 另一个我们要用到的，是一个编译器特性，即常见的编译器都会把忽略程序里的空字符。
 
@@ -147,8 +139,6 @@ exit 0
 正如刚才说的，MSVC不支持文件中包含0x1A。据说是基于历史原因，Windows的某些常见CRT以文本模式读文件时把0x1A解释为EOF，而MSVC继承了这种局限。
 
 clang-cl（Windows平台上的Clang，哪怕不开cl兼容）可以编译，但是随着二进制文件大小的增长，编译用时非常快速地增长。不建议使用，可以用mingw gcc，或者单纯在wsl里交叉编译。
-
-
 
 ### 使用许可
 

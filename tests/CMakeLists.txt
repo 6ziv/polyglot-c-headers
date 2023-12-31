@@ -97,7 +97,7 @@ setup_fixtures(fake_ffplay fake_ffplay)
 
 add_test(
 	NAME prepare_video_resource
-	COMMAND "${FFMPEG_BIN}" "-y" "-i" "${SOURCE_MP4_ORIG}" "-c:v" "copy" "-c:a" "copy" "-ss" "00:00:00" "-t" "00:00:20" "${SOURCE_MP4}"
+	COMMAND "${FFMPEG_BIN}" "-y" "-i" "${SOURCE_MP4_ORIG}" "-c:v" "copy" "-c:a" "copy" "-ss" "00:00:00" "-t" "00:00:10" "${SOURCE_MP4}"
 )
 setup_fixtures(prepare_video_resource trimmed_mp4)
 
@@ -116,9 +116,9 @@ require_fixtures(prepare_baseline_ts ts_1)
 setup_fixtures(prepare_baseline_ts baseline_ts)
 
 test(mp4 normal)
-test(mp4 use_pragma -p)
+#test(mp4 use_pragma -p)
 test(mp4 use_base64 -b)
-test(mp4 use_pragma_and_base64 -p -b)
+#test(mp4 use_pragma_and_base64 -p -b)
 
 add_executable(
     hello_exe
@@ -133,9 +133,9 @@ IF (WIN32)
 	init_fixture(exe)
 	generate_sources(hello.exe exe)
 	test(exe normal)
-	test(exe use_pragma -p)
+	#test(exe use_pragma -p)
 	test(exe use_base64 -b)
-	test(exe use_pragma_and_base64 -p -b)
+	#test(exe use_pragma_and_base64 -p -b)
 ELSE()
 	init_fixture(script)
 	generate_sources(print_hello.sh script)
