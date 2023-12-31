@@ -31,8 +31,9 @@ jobs:
           platform: x64
         if: ${{ matrix.compiler == 'i686-w64-mingw32-g++' }}
       - uses: seanmiddleditch/gha-setup-ninja@master
-      - run: mkdir ${GITHUB_WORKSPACE}/build
-      - run: cmake ${GITHUB_WORKSPACE}/project -GNinja
+      - run: mkdir build
+        working-directory: ./
+      - run: cmake ../project -GNinja
         working-directory: ./build
         env:
           CC: ${{ matrix.compiler }}
